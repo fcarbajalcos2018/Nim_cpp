@@ -32,9 +32,10 @@ int main()
 	board.display();
 	while (true)
 	{ // Looping operation for the base game
+		std::cout << "Iterate" << std::endl;
 		if (isPlayer1Turn)
 		{ // Player 1 (non-CPU) turn
-
+			isTerminal = true;
 		}
 		else
 		{

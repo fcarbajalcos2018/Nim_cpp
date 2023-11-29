@@ -8,10 +8,21 @@
 */
 Board::Board()
 {
-	this->piles[0] = 1;
-	this->piles[1] = 3;
-	this->piles[2] = 5;
-	this->piles[3] = 7;
+	this->BOARD_SIZE = 4;
+	this->piles = new int[BOARD_SIZE];
+	int boardSizes[] = { 1, 3, 5, 7 };
+	for (int i = 0; i < this->BOARD_SIZE; i++)
+		this->piles[i] = boardSizes[i];
+}
+
+int Board::getElement(int pile)
+{
+	return this->piles[pile];
+}
+
+int Board::getSize()
+{
+	return this->BOARD_SIZE;
 }
 
 /*
@@ -37,7 +48,7 @@ int Board::last()
 {
 	bool hasOne = false; // Boolean for only one pile with elements
 	bool terminate = false; // Boolean to terminate element search
-	for (int i = 0; i < sizeof(this->piles); i++)
+	for (int i = 0; i < this->getSize(); i++)
 	{ // Evaluate every pile for elements
 		if (this->piles[i] > 0)
 		{ // Condition where pile has elements
@@ -55,10 +66,16 @@ int Board::last()
 
 void Board::display()
 {
-	for (int i = 0; i < sizeof(this->piles); i++)
+	//int row_size = sizeof(this->piles) / 4; // Size of nim board by pile, we know by default there are 4 piles
+	for (int i = 0; i < this->getSize(); i++)
 	{
 		std::string elements = "";
 		for (int j = 0; j < this->piles[i]; j++) elements += "*";
 		std::cout << elements << std::endl;
 	}
+}
+
+Board::~Board()
+{
+	delete[] piles;
 }

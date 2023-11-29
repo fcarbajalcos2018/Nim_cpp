@@ -5,11 +5,15 @@ class Board
 {
 public:
 	Board();
+	int getElement(int pile);
+	int getSize();
 	int take(int n, int row);
 	int last();
 	void display();
+	~Board();
 private:
-	int piles[4];
+	int BOARD_SIZE;
+	int *piles;
 };
 
 #endif;
